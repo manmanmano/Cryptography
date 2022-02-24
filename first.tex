@@ -1,0 +1,33 @@
+\documentclass[12pt, letterpaper, twoside]
+{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, booktabs}
+
+\title{First Assignment}
+\author{Mariano D'Angelo}
+\date{February 2022}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Task 1}
+\begin{equation}
+\begin{tabular}{ | c | c | c | } \hline
+    \textbf{rem} & \textbf{val} & \textbf{expr} \\ \hline
+    $r_0$ & 2022 & a \\
+    $r_1$ & 752 & b \\
+    $r_2$ = $r_0$ mod $r_1$ & 518 & a - 2b \\
+    $r_3$ = $r_1$ mod $r_2$ & 234 & b - (a - 2b) = 3b - a \\
+    $r_4$ = $r_2$ mod $r_3$ & 50 & (a - 2b) - 2(3b - a) = 3a - 8b \\
+    $r_5$ = $r_3$ mod $r_4$ & 34 & (3b - a) - 4(3a - 8b) = 35b - 13a \\
+    $r_6$ = $r_4$ mod $r_5$ & 16 & (3a - 8b) - (35b - 13a) = 16a - 43b \\
+    $r_7$ = $r_5$ mod $r_6$ & 2 & (35b - 13a) - 2(16a - 43b) = 121b - 45a \\ \hline
+    $r_8$ = $r_6$ mod $r_7$ & 0 & \\ \hline
+\end{tabular}
+\end{equation}
+\\ \\
+\textbf{Task 2}
+
+
+\end{document}
