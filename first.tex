@@ -10,7 +10,9 @@
 
 \maketitle
 
+
 \section*{Task 1}
+Calculate GCD(a, b) and find Bezout's identity for a=2022, b=752. \\\\
 \begin{tabular}{ | c | c | c | } \hline
     \textbf{rem} & \textbf{val} & \textbf{expr} \\ \hline
     $r_0$ & 2022 & a \\
@@ -24,30 +26,64 @@
     $r_8$ = $r_6$ mod $r_7$ & 0 & \\ \hline
 \end{tabular}
 
+\noindent \newline \newline The gcd of 2022 and 752 is \textbf{2}. \newline
+From the final line of the table we can see that Bezout's identity is fulfilled
+with \textbf{-45} for x and \textbf{121} for y.\newline
+This can be checked with: $(2022 \cdot (-45)) + (752 \cdot 121)$ = 2
+
+\pagebreak
+
 
 \section*{Task 2} 
-1) x + 17 = 23 (mod 37) \textbar{} -17
+
+Solve the following congruences: \\
+
+\noindent 1) x + 17 = 23 (mod 37) \textbar{} -17
 \begin{addmargin}[1.22em]{0em}
 x + 17 - 17 = 23 - 17 (mod 37) \\
 x = 6 (mod 37) \\
-x = 6 \\
+x = \textbf{6} \\
 \end{addmargin}
-2) x + 42 = 19 (mod 51) \textbar{} -42
+
+\noindent2) x + 42 = 19 (mod 51) \textbar{} -42
 \begin{addmargin}[1.22em]{0em}
 x + 42 - 42 = 19 - 42 (mod 51) \\
 x = -23 (mod 51) \\
 x = -23 + 51 (mod 51) \\   
 x = 28 (mod 51) \\
-x = 28 
+x = \textbf{28}
 \end{addmargin}
 
 
 \section*{Task 3} 
-1) $23^{37}$ mod40 = \\
-\begin{addmargin}[1.22em]{0em}
 
+Solve the following congruences: \\
+
+\noindent 1) $23^{37}$ mod 40 = 
+\begin{addmargin}[1.22em]{0em}
+$23 \cdot 23^{36}$ mod 40 = \\
+$23 \cdot 23^{12\cdot3}$ mod 40 = \\
+$23 \cdot 23^{4\cdot3\cdot3}$ mod 40 = \\
+$23 \cdot 23^{2\cdot2\cdot3\cdot3}$ mod 40 = \\
+$23 \cdot 529^{2\cdot3\cdot3}$ mod 40 = \\
+$23 \cdot (529^{2\cdot3\cdot3}$ mod 40) mod 40 = \\
+$23 \cdot 9^{2\cdot3\cdot3}$ mod 40 = \\
+$23 \cdot 81^9$ mod 40 = \\
+$23 \cdot 1^9$ mod 40 = 
+\textbf{23}
 \end{addmargin}
 
+\pagebreak
+
+\noindent 2) $(-133)^{100}$ mod 10 = 
+\begin{addmargin}[1.22em]{0em}
+(-133 mod 10)$^{100}$ mod 10 = \\
+$7^{100}$ mod 10 = \\
+$7^{4 \cdot 25}$ mod 10 = \\
+$2401^{25}$ mod 10 = \\
+$1^{25}$ mod 10 = 
+\textbf{1}
+\end{addmargin}
 
 \section*{Task 4}
 
