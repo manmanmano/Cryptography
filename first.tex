@@ -4,7 +4,7 @@
 
 \title{First Assignment}
 \author{Mariano D'Angelo}
-\date{$1^st$ March 2022}
+\date{$1^{st}$ March 2022}
 
 \begin{document}
 
@@ -100,7 +100,7 @@ Assume that the Affine cipher is implemented $Z_{89}$, not in $Z_{26}$.
 m - plaintext message \\
 c - ciphertext \\\\
 \noindent The encryption key is: $E_m$ = am + b mod 89 \\
-The decryption key is: $D_c$ = $a^{-1} \cdot (c - b)$ \\
+The decryption key is: $D_c$ = $a^{-1} \cdot (c - b)$ mod 89 \\
 
 \noindent \textbf{2. What is the number of possible keys?}
 \newline
@@ -154,7 +154,7 @@ a = 7 \\
 b = 20 mod 89 \\
 b = 20 \\
 
-\noindent a and b make the encryption key \textbf{k(7, 20)}.
+\noindent a and b form the encryption key \textbf{k(7, 20)}.
 Knowing that $m_3$ = 13 we can insert it into the Affine encryption function
 $E_m$ = am + b mod 89, knowing that a = 7 and b = 20. \\
 \pagebreak
