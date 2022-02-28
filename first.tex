@@ -4,7 +4,7 @@
 
 \title{First Assignment}
 \author{Mariano D'Angelo}
-\date{February 2022}
+\date{$1^st$ March 2022}
 
 \begin{document}
 
@@ -90,6 +90,82 @@ $1^{25}$ mod 10 =
 
 \section*{Task 5}
 
+Assume that the Affine cipher is implemented $Z_{89}$, not in $Z_{26}$.
+\newline
+
+\noindent
+\textbf{1. Write down encryption and decryption functions for this modification of Affine cipher.}\newline
+
+\noindent a, b - together form the key k(a, b) \\
+m - plaintext message \\
+c - ciphertext \\\\
+\noindent The encryption key is: $E_m$ = am + b mod 89 \\
+The decryption key is: $D_c$ = $a^{-1} \cdot (c - b)$ \\
+
+\noindent \textbf{2. What is the number of possible keys?}
+\newline
+\noindent
+\\The number of possible keys is: $89 \cdot \Theta(89)$ or $89 \cdot 88$. 88 is 
+what we get from the Euler's function, following the property: $\Theta(p) = p - 1$, 
+where p represents a prime number. This means that there is a total of 7832 possible
+keys.
+\newline
+
+\noindent \textbf{3. Suppose that modulus p = 89 is public. Malicious Eve intercepts 
+two ciphertexts encrypted with the same key sent from Alice to Bob $c_1$ = 1 and
+$c_2$ = 69. Assume that Eve also managed to find out that the corresponding 
+plaintexts are $m_1$ = 10 and $m_2$ = 7. Find out the encryption key and use it 
+to encrypt message $m_3$ = 13.}
+\newline
+
+\noindent Firstly, we write down the following system of equations:
+$$\begin{cases}
+    69 = 7a + b \text{mod 89} \\
+    1 = 10a + b \text{mod 89} 
+\end{cases}$$
+
+Now we can solve it and find the key k(a, b). 
+$$\begin{cases}
+    69 = 7a + b \text{mod 89} \hspace{0.1cm} | \cdot (-1) \\
+    1 = 10a + b \text{mod 89} 
+\end{cases}$$
+
+$$\begin{cases}
+    -69 = -7a - b \text{mod 89} \\
+    1 = 10a + b \text{mod 89} 
+\end{cases}$$
+
+\noindent \\After this we get: \\
+
+\noindent -69 + 1 = -7a + 10a + 0 mod 89 \\
+-68 = 3a mod 89 \\
+(-68 mod 89) = 3a mod 89 \\
+21 = 3a mod 89 \textbar{} : 3\\
+7 = a mod 89 \\
+a = 7 mod 89 \\
+a = 7 \\
+
+\noindent Now that we have a we can find b by just replacing a's value into one of the equations in the system. \\
+
+\noindent $69 = 7 \cdot 7$ + b mod 89 \\
+69 = 49 + b mod 89 \\
+69 - 49 = b mod 89 \\
+20 = b mod 89 \\
+b = 20 mod 89 \\
+b = 20 \\
+
+\noindent a and b make the encryption key \textbf{k(7, 20)}.
+Knowing that $m_3$ = 13 we can insert it into the Affine encryption function
+$E_m$ = am + b mod 89, knowing that a = 7 and b = 20. \\
+\pagebreak
+
+\noindent The ciphertext we get is: \\
+
+\noindent $7 \cdot 13$ + 20 mod 89 = \\
+91 + 20 mod 89 = \\
+111 mod 89 = 22 \\
+
+\noindent Ciphertext $c_3$ is \textbf{22}.
 
 \section*{Task 6}
 
