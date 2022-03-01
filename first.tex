@@ -87,6 +87,57 @@ $1^{25}$ mod 10 =
 
 \section*{Task 4}
 
+Consider the following sequence of operations: 
+\\
+
+\noindent $Plaintext \rightarrow S_1 \rightarrow P_1 \rightarrow S_2 \rightarrow P_2 \rightarrow Ciphertext$
+\\
+
+\noindent Plaintext is \textbf{MOTIVATION}. $S_1$ is a shift cipher with key $k_{S_1}$ = 17.
+$S_2$ is a shift cipher with the key $k_{S_2}$ = 8. $P_1$ is a permutation cipher 
+with a key \\ $k_{P_1}$ = (5,1,3,2,4). $P_2$ is a permutation cipher with a key 
+$k_{P_2}$ = (3,4,5,1,2). \\\\ \textbf{The task:} what is the ciphertext? \\
+
+\noindent This task was solved both with code and manually. The shift into Caesar cipher
+was made by a Python script I wrote in Appendix A. The code has one global variable
+called alphabet that stores two entire English alphabets. This was made in order to
+avoid the string index out of range in case the shift makes a number greater than 26, in that
+case the alphabet restart from a, but not as 0 but 26. The main function is called tocaesar,
+which takes a plaintext and the desired shift as input and encrypts the plaintext.
+In order to encrypt every single letter I ran a loop for each in the text, then I 
+found the index of the every inspected letter and assigned it to a temporary variable
+called position. Once we get the position we need to calculate the new shifted one
+so I just summed the old position with the input shift. Knowing the
+new shifted position of the letter, I appended the corresponding 
+alphabet letter with the index of
+the new position to an initially empty string called result. 
+The transposition part was made by hand. \\
+
+\noindent After running the script for the first time giving input of MOTIVATION and
+17 we get the first ciphertext \textbf{dfkzmrkzfe}. \\
+
+\noindent Now with the key (5, 1, 3, 2, 4) we need to transpose the current text. \\
+
+\noindent 1  2  3  4  5  1  2  3  4  5 \\
+d  f  k  z  m  r  k  z  f  e \\
+
+\noindent 5  1  3  2  4  5  1  3  2  4 \\
+m  d  k  f  z  e  r  z  k  f \\
+
+\noindent After running the script again giving input of mdkfzerzkf and 8 we get the
+third ciphertext \textbf{ulsnhmzhsn}. \\
+
+\noindent Finally we can run the final transposition and get the final result using
+the following key (3,4,5,1,2). \\
+
+\noindent 1  2  3  4  5  1  2  3  4  5 \\
+u  l  s  n  h  m  z  h  s  n \\ 
+
+\noindent 3  4  5  1  2  3  4  5  1  2 \\
+s  n  h  u  l  h  s  n  m  z \\
+
+\noindent The final ciphertext is: \textbf{snhulhsnmz}.
+
 
 \section*{Task 5}
 
@@ -167,7 +218,17 @@ $E_m$ = am + b mod 89, knowing that a = 7 and b = 20. \\
 
 \noindent Ciphertext $c_3$ is \textbf{22}.
 
+
 \section*{Task 6}
+
+Let the message be \\
+
+\noindent \textit{"The most beautiful things in the world cannot be seen or touched, 
+they are felt with the heart."} // | Antoine de Saint-Exupery, The Little Prince \\
+
+\noindent Make frequency table for that message and compute index of coincidence. \\
+
+
 
 
 \end{document}

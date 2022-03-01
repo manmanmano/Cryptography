@@ -21,7 +21,10 @@ def transpose(text, key):
 
 msg = "MOTIVATION"
 s1 = to_caesar(msg.lower(), 17)
+print(s1)
 p1 = transpose(s1.lower(), [5, 1, 3, 2, 4])
+print(p1)
 s2 = to_caesar(p1.lower(), 8)
+print(s2)
 p2 = transpose(s2.lower(), [3, 4, 5, 1 ,2])
 print(f"The final ciphertext is: {p2}")
