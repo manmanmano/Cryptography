@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
-\usepackage{amsmath, booktabs, caption, scrextend}
-
+\usepackage{amsmath, booktabs, caption, scrextend, graphicx, listings}
+\graphicspath{ {.} }
 
 \title{First Assignment}
 \author{Mariano D'Angelo}
@@ -151,7 +151,7 @@ Assume that the Affine cipher is implemented $Z_{89}$, not in $Z_{26}$.
 m - plaintext message \\
 c - ciphertext \\\\
 \noindent The encryption key is: $E_m$ = am + b mod 89 \\
-The decryption key is: $D_c$ = $a^{-1} \cdot (c - b)$ mod 89 \\
+The decryption key is: $D_c$ = $a^{-1} \cdot (c - b)$ mod 89 \pagebreak 
 
 \noindent \textbf{2. What is the number of possible keys?}
 \newline
@@ -208,7 +208,6 @@ b = 20 \\
 \noindent a and b form the encryption key \textbf{k(7, 20)}.
 Knowing that $m_3$ = 13 we can insert it into the Affine encryption function
 $E_m$ = am + b mod 89, knowing that a = 7 and b = 20. \\
-\pagebreak
 
 \noindent The ciphertext we get is: \\
 
@@ -224,11 +223,94 @@ $E_m$ = am + b mod 89, knowing that a = 7 and b = 20. \\
 Let the message be \\
 
 \noindent \textit{"The most beautiful things in the world cannot be seen or touched, 
-they are felt with the heart."} // | Antoine de Saint-Exupery, The Little Prince \\
+they are felt with the heart."} | Antoine de Saint-Exupery, The Little Prince \\
 
 \noindent Make frequency table for that message and compute index of coincidence. \\
 
+\noindent  In order to calculate the index of coincidence I wrote a small C program to do 
+the trick. In main I declared three variables called alphabet, an array that contains all of 
+the letters from the english alphabet, counter, an array of 26 0's, and txt that contains
+the quote from Exupery. After their declaration a function called findIC is called that 
+takes as input these three variables. The function loops through the text and for every letter stops,
+compares the letter with the ones in the alphabet's array (this is done by the internal loop) and if there 
+is a match the letter's respective counter (each letter has its own counter) increases by one. 
+Also the length of the text is increased by one (I had to do it
+manually in order to avoid counting spaces) and  finally the inner loop breaks. The outer loop only
+ends when the txt pointer is pointing to the array's terminating 0. Once we have 
+the length of the text and the counters for each of the letters I computed the index 
+of coincidence with its respective formula. To compute the index of coincidence I ran a loop 
+26 times, one time for each of the letter. In the end I return the IC as a double value and
+print it. \\
+
+\noindent The frequency table that we get is:  \\
+
+\noindent \includegraphics[scale=0.5]{frequency_table} \\
+
+\noindent The index of coincidence is: \textbf{0.0724324}
 
 
+\section*{APPENDIX A - task 4 program}
 
+\begin{lstlisting}
+
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
+    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+alphabet += ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
+    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+
+def tocaesar(text, shift):
+    result = ""
+    for letter in text:
+        position = alphabet.index(letter)
+        newPosition = position + shift 
+        result += alphabet[newPosition]
+    return result
+
+
+text = input("Type in the desired text: ")
+shift = int(input("Type in the shift: "))
+print(tocaesar(text, shift))
+
+\end{lstlisting}
+
+\section*{APPENDIX B - task 6 program}
+
+\begin{lstlisting}
+
+#include <stdio.h>
+
+
+double findIC(char* txt, char* alphabet, int* counters) {
+    int txtLength = 0;
+    for (int i = 0; *(txt + i); i++) {
+        for (int j = 0;  j < 26; j++) {
+            if (*(txt + i) == *(alphabet + j)) {
+                *(counters + j) += 1;
+                txtLength++;
+                break;
+            }
+        }
+    }
+    double ic = 0;
+    for (int i = 0; i < 26; i++) {
+        ic += ((double)counters[i] / txtLength) * 
+            ((double)(counters[i] - 1) / ( txtLength - 1)); 
+    }
+    return ic;
+}
+
+
+int main() {
+    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
+    int counters[26] = {0};
+    char txt[] = "The most beautiful things in the world cannot be" 
+        "seen or touched, they are felt with the heart.";
+    double ic = findIC(txt, alphabet, counters);
+    printf("The index of coincidence for the text is: %lg\n", ic);
+    return 0;
+}
+
+\end{lstlisting}
 \end{document}
