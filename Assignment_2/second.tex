@@ -1,5 +1,5 @@
-\documentclass[12pt]{article}
-\usepackage{booktabs, caption}
+\documentclass{article}
+\usepackage{booktabs, amsmath, amsfonts}
 
 \title{Second Assignment}
 \author{Mariano D'Angelo}
@@ -10,7 +10,7 @@
 \maketitle
 
 
-\section*{Task 1}
+\section*{Task 1 | Big O Notation}
 Prove that $O(n^2)= an^2 + bn - c$, where \textit{a} - is first 2 digits of your student
 code, \textit{b} - is 3rd and 4th digit of your student code, \textit{c} - last 
 two digits of your student code. \\\\
@@ -34,8 +34,15 @@ Meaning that the function is positive only when bigger than 4 or 13. \\\\
 As a result we get | $c = 21, n = 14$
 
 
-\section*{Task 2}
+\section*{Task 2 | Complexity theory}
 Give an example of a \textit{search} problem and corresponding \textit{decision} problem,
 which was not discussed in the lectures. \\\\
+Is $x \in \mathbb{Z}$ positive or negative? \\\\
+Consider the corresponding verification function $V(x,y)$:
+$$\begin{cases}
+    1 \text{  where } x = y + z \text{ and } (y \ge 0 \text{ and }z \ge 0) \text{ or } (+y > -|z| \text{ and viceversa}) \\
+    0 \text{  if otherwise}
+\end{cases}$$
+
 
 \end{document}
