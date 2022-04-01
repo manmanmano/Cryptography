@@ -59,5 +59,47 @@ suitable encryption mode for the following mission scenarios:
     \item Encryption of a document that will be sent via email.
 \end{enumerate}
 Please, motivate your answer.
+\begin{enumerate}
+    \item In order to encrypt a 6 digit identification number I would use ECB. Even though
+        it is not that safe when it comes to the encryption of multiple blocks (lack of diffusion), 
+        it can do well when it comes to the encryption of a single block. If we think of the 6 digit
+        number as an integer it only occupies 4 bytes and we are encrypting with an 128 bit
+        AES. Besides the lack of diffusion it has many positive sides, such as parallelizable
+        encryption and decryption, and the possibility of random read.
+    \item In order to encrypt a document I would use CTR. This mode of encryption has 
+        many benefits, both encryption and decryption are parallelizable, random read is possible,
+        faulty blocks affect only their current block.
+        CTR uses a counter that is encrypted with the cipher text and increases 
+        with each block, so repeating ciphertext will not appear (good diffusion). No padding is used 
+        in the CTR mode (ciphertext is the same length as the plaintext) avoiding the padding oracle attack.
+\end{enumerate}
+
+
+\section*{Task 4 | Modes of encryption}
+Alice wants to send a message \textit{m}, encrypted with block cipher, to Bob. The message m
+is split into 4 blocks of equal length $m = m_0||m_1||m_2||m_3$ and encrypted using 3DES.
+However, a transmission error occurs (or malicious Carol got access to the channel) and
+one bit of the ciphertext $c_1$ changes its value. \\
+Bob receives the ciphertexts, decrypts them and gets the following message 
+$m' = m_0'||m_1'||m_2'||m_3'$. 
+Please, explain to Bob how many bits (approximately) are expected to
+be wrong in each block $m_i'$ if Alice used ECB and CBC modes.
+
+
+\section*{Task 5 | Diffie-Hellman}
+Consider the Diffie-Hellman protocol with $\alpha$ = 3 and \textit{p} = 673. Alice chooses
+\textit{A} = 95 and Bob chooses \textit{B} = 240. Compute the messages that Alice and Bob
+send to each other and the final shared key.
+
+
+\section*{Task 6 | Group theory}
+Do the following sets with defined operations form a group? Provide explanation.
+\begin{itemize}
+    \item $\mathbb{Z}_{10}^+$ (\textit{Integers modulo 10 under addition})
+    \item $\mathbb{Q}$ (\textit{Rational numbers under multiplication}) 
+    \item $\mathbb{Z}_{37}^-$ (\textit{Intergers under subtractions})
+    \item $(\mathbb{C} - 0, *)$ (\textit{Complex numbers under multiplication})
+\end{itemize}
+
 
 \end{document}
