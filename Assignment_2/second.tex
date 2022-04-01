@@ -83,7 +83,18 @@ one bit of the ciphertext $c_1$ changes its value. \\
 Bob receives the ciphertexts, decrypts them and gets the following message 
 $m' = m_0'||m_1'||m_2'||m_3'$. 
 Please, explain to Bob how many bits (approximately) are expected to
-be wrong in each block $m_i'$ if Alice used ECB and CBC modes.
+be wrong in each block $m_i'$ if Alice used ECB and CBC modes. \\\\
+3DES encrypts in blocks of 64 bits. So let's suppose each block contains about 60 bits of information. \\
+If Alice used ECB, the whole block in which the error resuted ($m_1$), would
+become faulty, so we would lose approximately 60 bits of data. ECB divides the plaintext
+into blocks and every block is encrypted with the same key and algorithm. Because no parts
+of the faulty block are used in the other blocks, the error is isolated. \\
+If Alice used CBC, the error would be much worse than the one for ECB. This is because the
+resulting ciphertext of the previous block is used to encrypt the current block and so on. If
+we get the error in $m_1$ there will be two faulty blocks, the current one and the previous one (the text is being decrypted).
+So we will have approximately 120 bits that are expected to be wrong.
+
+
 
 
 \section*{Task 5 | Diffie-Hellman}
