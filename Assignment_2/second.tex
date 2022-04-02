@@ -89,12 +89,10 @@ If Alice used ECB, the whole block in which the error resuted ($m_1$), would
 become faulty, so we would lose approximately 60 bits of data. ECB divides the plaintext
 into blocks and every block is encrypted with the same key and algorithm. Because no parts
 of the faulty block are used in the other blocks, the error is isolated. \\
-If Alice used CBC, the error would be much worse than the one for ECB. This is because the
-resulting ciphertext of the previous block is used to encrypt the current block and so on. If
-we get the error in $m_1$ there will be two faulty blocks, the current one and the previous one (the text is being decrypted).
+If Alice used CBC, the error would be twice as worse than the one for ECB. This is because the
+resulting ciphertext of the current block is used to encrypt the next block and so on. If
+we get the error in $m_1$ there will be two faulty blocks, the current one and the next one (the text is being decrypted).
 So we will have approximately 120 bits that are expected to be wrong.
-
-
 
 
 \section*{Task 5 | Diffie-Hellman}
@@ -107,10 +105,17 @@ send to each other and the final shared key.
 Do the following sets with defined operations form a group? Provide explanation.
 \begin{itemize}
     \item $\mathbb{Z}_{10}^+$ (\textit{Integers modulo 10 under addition}) | 
-
-    \item $\mathbb{Q}$ (\textit{Rational numbers under multiplication}) 
-    \item $\mathbb{Z}_{37}^-$ (\textit{Intergers under subtractions})
-    \item $(\mathbb{C} - 0, *)$ (\textit{Complex numbers under multiplication})
+        This is group, because it has all of the three attributes required: it associative, 
+        e.g. 3 + (1 + 2) = (3 + 1) + 2, has a unit which is 0, e.g. 7 + 0 = 0 + 7 = 7, and
+        is invertible, we can get by summing a pair of numbers 10, e.g. 8 + 2, 9 + 1, 6 + 4,
+        taken mod 10 will be 0.
+    \item $\mathbb{Q}$ (\textit{Rational numbers under multiplication}) | This is not a group, 
+        since it is for all rational numbers, 0 too and 0 has not an inverse.
+    \item $\mathbb{Z}_{37}^-$ (\textit{Intergers under subtractions}) | This is not a group, because
+        it is not associative, e.g. 10 - (5 - 3) $\ne$ 10 - 5 - 3
+    \item $(\mathbb{C} - 0, *)$ (\textit{Complex numbers under multiplication}) | This is a group, 
+        because it is associative (multiplication is associative), it has a unit, 
+        which is 1 (every number multiplied by 1 will remain the same), an is inverse (only without 0).
 \end{itemize}
 
 
