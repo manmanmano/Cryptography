@@ -89,7 +89,7 @@ become faulty, so we would lose approximately 64 bits of data. ECB divides the p
 into blocks and every block is encrypted with the same key and algorithm. Because no parts
 of the faulty block are used in the other blocks, the error is isolated. \\
 If Alice used CBC, the error would be a bit worse than the one for ECB. This is because the
-resulting ciphertext of the current block is used to encrypt the next block and so on 
+resulting ciphertext of the current block is used to encrypt the next block
 (resulting ciphertext is XORed with next plaintext). If we get the error in $m_1$ there 
 will be one fully faulty block (current) and one with a wrong bit (the next one).
 So we will have approximately 64 + 1 bits that are expected to be wrong.
@@ -98,7 +98,32 @@ So we will have approximately 64 + 1 bits that are expected to be wrong.
 \section*{Task 5 | Diffie-Hellman}
 Consider the Diffie-Hellman protocol with $\alpha$ = 3 and \textit{p} = 673. Alice chooses
 \textit{A} = 95 and Bob chooses \textit{B} = 240. Compute the messages that Alice and Bob
-send to each other and the final shared key.
+send to each other and the final shared key. \\\\
+The Diffie-Hellman key establishment can be divided in 5 steps:
+\begin{enumerate} 
+    \item Alice and Bob choose a private key,
+        $\omega_A\leftarrow \{1, ..., p - 1\}$ for Alice and $\omega_B\leftarrow \{1, ..., p - 1\}$ for Bob
+    \item Alice computes its public key and sends it to Bob, computes $y_B = \alpha^{\omega_A} mod\text{  }p$ 
+        and sends $m_A^1 = y_A$
+    \item Bob computes its public key and sends it to Alice, computes $y_B = \alpha^{\omega_B} mod\text{  }p$ 
+        and sends $m_B^1 = y_B$
+    \item Alice computes the shared key, $k_A = y_B^{\omega_A} mod \text{  }p$
+    \item Bob recomputes the shared key, $k_B = y_A^{\omega_B} mod \text{  }p$ and checks 
+        with Alice if the shared keys are the same
+\end{enumerate}
+In order to accomplish this task, I wrote a simple script located in APPENDIX A. \\
+In the beginning I declared 4 variables, which are: Alice's and Bob's shared secret
+or $\alpha$ (3), Alice's private key or $\omega_A$(95), Bob's private key or $\omega_B$
+(240), and a large prime or \textit{p} (673). Once the variables are declared I input
+them in the function \textit{establish\_key}, which will calculate Alice's and Bob's shared key.
+Firstly, it calculates Alice's public key or $y_A$ using the formula in point number 2.
+Secondly, it caluclates Bob's public key or $y_B$ using the formula in point number 3.
+Finally, it calculates the shared key, first for Alice, using the formula in point number 4, and
+thne for Bob, using the formula in point number 5. In order to check if the keys
+are the same, the program compares the two calculated shared keys and if are the 
+same print the message "The key has been successfully established! The key is ...", but 
+if the keys are not equal, then the program exits with the following message "An error has occured!".
+
 
 
 \section*{Task 6 | Group theory}
@@ -106,18 +131,21 @@ Do the following sets with defined operations form a group? Provide explanation.
 \begin{itemize}
     \item $\mathbb{Z}_{10}^+$ (\textit{Integers modulo 10 under addition}) | 
         This is group, because it has all of the three attributes required: it associative, 
-        e.g. 3 + (1 + 2) = (3 + 1) + 2, has a unit which is 0, e.g. 7 + 0 = 0 + 7 = 7, and
+        e.g. 3 + 1 + 2 =  1 + 2 + 3, has a unit which is 0, e.g. 7 + 0 = 0 + 7 = 7, and
         is invertible, we can get by summing a pair of numbers 10, e.g. 8 + 2, 9 + 1, 6 + 4,
         taken mod 10 will be 0.
     \item $\mathbb{Q}$ (\textit{Rational numbers under multiplication}) | This is not a group, 
         since it is for all rational numbers, 0 too and 0 has not an inverse.
     \item $\mathbb{Z}_{37}^-$ (\textit{Intergers under subtractions}) | This is not a group, because
-        it is not associative, e.g. 10 - (5 - 3) $\ne$ 10 - 5 - 3
+        it is not associative, e.g. 10 - 5 - 3 $\ne$ 5 - 10 - 3
     \item $(\mathbb{C} - 0, *)$ (\textit{Complex numbers under multiplication}) | This is a group, 
         because it is associative (multiplication is associative), it has a unit, 
         which is 1 (every number multiplied by 1 will remain the same), and 
         is inverse (only without 0).
 \end{itemize}
+
+
+\pagebreak
 
 
 \section*{APPENDIX A - task 5 program}
@@ -128,7 +156,7 @@ def establish_key(shared_secret, a_priv, b_priv, p):
     a_key = b_pub**a_priv%p
     b_key = a_pub**b_priv%p
     if a_key == b_key:
-        print("They key has been successfully established!")
+        print("The key has been successfully established!")
         print(f"The key is: {a_key}")
 
     else:
