@@ -9,7 +9,6 @@
 
 \maketitle
 
-
 \section*{Task 1 | Big O Notation}
 Prove that $O(n^2)= an^2 + bn - c$, where \textit{a} - is first 2 digits of your student
 code, \textit{b} - is 3rd and 4th digit of your student code, \textit{c} - last 
@@ -29,7 +28,7 @@ $2n \ge 17$ \\
 $n = 8.5$ \\\\
 Meaning that the function starts to grow again after the value 8.5 is encountered. \\\\
 By solving this quadratic formula equation we get the following values: \\\\
-$n_1 = 13, n_2 = 4$, so $n < 4$ V $n > 13$ \\\\
+$n_1 = 13, n_2 = 4$, so $n < 4$ \textit{V} $n > 13$ \\\\
 Meaning that the function is positive only when bigger than 4 or 13. \\\\
 As a result we get | $c = 21, n = 14$
 
@@ -86,13 +85,14 @@ Please, explain to Bob how many bits (approximately) are expected to
 be wrong in each block $m_i'$ if Alice used ECB and CBC modes. \\\\
 3DES encrypts in blocks of 64 bits. So let's suppose each block contains about 64 bits of information. \\
 If Alice used ECB, the whole block in which the error resuted ($m_1$), would
-become faulty, so we would lose approximately 60 bits of data. ECB divides the plaintext
+become faulty, so we would lose approximately 64 bits of data. ECB divides the plaintext
 into blocks and every block is encrypted with the same key and algorithm. Because no parts
 of the faulty block are used in the other blocks, the error is isolated. \\
-If Alice used CBC, the error would be twice a bit worse than the one for ECB. This is because the
-resulting ciphertext of the current block is used to encrypt the next block and so on. If
-we get the error in $m_1$ there will be one fully faulty block (current) and one with a wrong bit (the next one).
-So we will have approximately 65 bits that are expected to be wrong.
+If Alice used CBC, the error would be a bit worse than the one for ECB. This is because the
+resulting ciphertext of the current block is used to encrypt the next block and so on 
+(resulting ciphertext is XORed with next plaintext). If we get the error in $m_1$ there 
+will be one fully faulty block (current) and one with a wrong bit (the next one).
+So we will have approximately 64 + 1 bits that are expected to be wrong.
 
 
 \section*{Task 5 | Diffie-Hellman}
@@ -115,7 +115,8 @@ Do the following sets with defined operations form a group? Provide explanation.
         it is not associative, e.g. 10 - (5 - 3) $\ne$ 10 - 5 - 3
     \item $(\mathbb{C} - 0, *)$ (\textit{Complex numbers under multiplication}) | This is a group, 
         because it is associative (multiplication is associative), it has a unit, 
-        which is 1 (every number multiplied by 1 will remain the same), an is inverse (only without 0).
+        which is 1 (every number multiplied by 1 will remain the same), and 
+        is inverse (only without 0).
 \end{itemize}
 
 
