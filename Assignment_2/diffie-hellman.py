@@ -4,7 +4,7 @@ def establish_key(shared_secret, a_priv, b_priv, p):
     a_key = b_pub**a_priv%p
     b_key = a_pub**b_priv%p
     if a_key == b_key:
-        print("The key has been successfully established!")
+        print("The key has been established successfully!")
         print(f"The key is: {a_key}")
 
     else:
